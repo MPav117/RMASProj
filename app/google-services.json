@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "530557246371",
+    "project_id": "ordinarybeauty-3e9fd",
+    "storage_bucket": "ordinarybeauty-3e9fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530557246371:android:10b4290eebe2fbb2009816",
+        "android_client_info": {
+          "package_name": "com.example.ordinarybeauty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUKSvKCCNJhjiYJXm6abN3B6FRMOIZpYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
