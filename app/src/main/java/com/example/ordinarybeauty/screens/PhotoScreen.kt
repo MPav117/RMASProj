@@ -102,7 +102,9 @@ fun PhotoScreen(modifier: Modifier = Modifier.fillMaxSize(),
         mutableStateOf(false)
     }
 
-    val comments = Array(ps.comments.size) {Uri.EMPTY}
+    var comments: Array<Uri> by remember {
+        mutableStateOf(emptyArray())
+    }
 
     fun ratePhoto(rating: Float){
         val photoKey: String = ps.key + ps.id.toString()
@@ -121,6 +123,18 @@ fun PhotoScreen(modifier: Modifier = Modifier.fillMaxSize(),
     }
 
     if (loading == 0){
+        comments = Array(ps.comments.size) {Uri.EMPTY}
+        if (ps.key == auth.currentUser!!.uid){
+            rated = true
+            commented = true
+        }
+        else {
+            ps.rates.forEach {
+                if (it == auth.currentUser!!.uid){
+                    rated = true
+                }
+            }
+        }
         ps.comments.forEachIndexed { i: Int, it: String ->
             if (it.startsWith(auth.currentUser!!.uid)){
                 commented = true
@@ -226,6 +240,7 @@ fun PhotoScreen(modifier: Modifier = Modifier.fillMaxSize(),
                                     "dateLastInteraction", Date()).addOnSuccessListener {
                                     db.collection("users").document(auth.currentUser!!.uid).update("points", curUser!!.points + 3).addOnSuccessListener {
                                         uploadPhoto("photoSpotComments", photoKey, newImageKey)
+                                        commented = true
                                     }
                                 }
                             }
